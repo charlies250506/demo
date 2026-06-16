@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatFlow AI – Estate Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1a1a2e;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e8e8f0;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: #4f46e5; }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #4f46e5; }
+
+.nav-cta {
+  background: #4f46e5;
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 100%);
+  color: #fff;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+}
+
+.hero h1 span { color: #818cf8; }
+
+.hero p {
+  font-size: 18px;
+  color: #a5b4fc;
+  max-width: 540px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+.search-bar {
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 6px 6px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #1a1a2e;
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-bar button {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #a5b4fc;
+  margin-top: 2px;
+}
+
+/* ─── SECTION HEADERS ─── */
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.5px;
+}
+
+.section-header p {
+  color: #666;
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+/* ─── LISTINGS ─── */
+.listings-section {
+  padding: 72px 40px;
+  background: #f7f7fc;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.property-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+.property-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.property-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.property-img-wrap {
+  position: relative;
+}
+
+.property-body {
+  padding: 18px 20px 20px;
+}
+
+.property-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 4px;
+}
+
+.property-address {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.property-type {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 14px;
+}
+
+.property-meta {
+  display: flex;
+  gap: 16px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #555;
+}
+
+.meta-icon {
+  font-size: 14px;
+}
+
+/* ─── VALUATION BANNER ─── */
+.valuation-banner {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  padding: 64px 40px;
+  text-align: center;
+}
+
+.valuation-banner h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.valuation-banner p {
+  color: #c4b5fd;
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+.valuation-btn {
+  background: #fff;
+  color: #4f46e5;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: transform 0.15s;
+}
+
+.valuation-btn:hover { transform: scale(1.03); }
+
+/* ─── WHY US ─── */
+.why-section {
+  padding: 72px 40px;
+  background: #fff;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.why-card {
+  text-align: center;
+  padding: 32px 24px;
+  border-radius: 14px;
+  background: #f7f7fc;
+}
+
+.why-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.why-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1a1a2e;
+}
+
+.why-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #1a1a2e;
+  color: #888;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.footer-logo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.footer-logo span { color: #818cf8; }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: #fff; }
+
+/* ─── CHAT WIDGET ─── */
+#chat-launcher {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+}
+
+#chat-bubble {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(79,70,229,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 26px;
+  border: none;
+}
+
+#chat-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(79,70,229,0.6);
+}
+
+.chat-notif {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+#chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 380px;
+  height: 540px;
+  background: #0d1020;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+  transform: scale(0.95) translateY(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+}
+
+#chat-window.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cw-header {
+  background: #111525;
+  border-bottom: 1px solid #1a1f35;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cw-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cw-avatar {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.cw-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8e8ff;
+}
+
+.cw-status {
+  font-size: 11px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+
+.cw-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+.cw-close {
+  background: none;
+  border: none;
+  color: #4a5070;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.cw-close:hover { color: #818cf8; }
+
+.cw-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overscroll-behavior: contain;
+}
+
+.cw-messages::-webkit-scrollbar { width: 4px; }
+.cw-messages::-webkit-scrollbar-thumb { background: #2a2f4a; border-radius: 2px; }
+
+.cw-msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.cw-msg.user {
+  flex-direction: row-reverse;
+}
+
+.cw-msg-av {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cw-msg.user .cw-msg-av {
+  background: #2a2f4a;
+}
+
+.cw-bubble {
+  background: #1a1f35;
+  color: #d4d8f0;
+  padding: 10px 13px;
+  border-radius: 12px;
+  border-top-left-radius: 3px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  max-width: 260px;
+}
+
+.cw-msg.user .cw-bubble {
+  background: #4f46e5;
+  color: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 3px;
+}
+
+.cw-qr-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  margin-left: 36px;
+}
+
+.cw-qr {
+  background: transparent;
+  border: 1px solid #818cf8;
+  color: #818cf8;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.15s, color 0.15s;
+}
+
+.cw-qr:hover {
+  background: #818cf8;
+  color: #0d1020;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  background: #1a1f35;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border-top-left-radius: 3px;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background: #4f46e5;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.cw-input-row {
+  background: #111525;
+  border-top: 1px solid #1a1f35;
+  padding: 12px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cw-input {
+  flex: 1;
+  background: #1a1f35;
+  border: 1px solid #2a2f4a;
+  border-radius: 10px;
+  color: #e8e8ff;
+  font-size: 13.5px;
+  padding: 9px 13px;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.cw-input::placeholder { color: #4a5070; }
+.cw-input:focus { border-color: #4f46e5; }
+
+.cw-send {
+  background: #4f46e5;
+  border: none;
+  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.cw-send:hover { background: #4338ca; }
+
+.cw-send svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+.cw-footer-label {
+  text-align: center;
+  font-size: 10px;
+  color: #2a2f4a;
+  padding: 6px;
+  background: #0d1020;
+  letter-spacing: 0.3px;
+}
+
+.cw-footer-label span { color: #4f46e5; }
+
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 48px 20px; }
+  .hero h1 { font-size: 34px; }
+  .hero-stats { gap: 24px; }
+  .listings-section, .why-section { padding: 48px 20px; }
+  .listings-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+  #chat-window { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">ChatFlow<span>AI</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Buy</a></li>
+    <li><a href="#">Sell</a></li>
+    <li><a href="#">Rent</a></li>
+    <li><a href="#">Valuations</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="nav-cta">Free Valuation</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <h1>Find Your Perfect<br><span>Home in Scotland</span></h1>
+  <p>Local estate agents with a personal touch. We help buyers and sellers across Ayrshire and beyond.</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Search by area, postcode or property type…">
+    <button>Search</button>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Properties sold</div>
+    </div>
+    <div>
+      <div class="stat-num">12 yrs</div>
+      <div class="stat-label">In the market</div>
+    </div>
+    <div>
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Client satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURED LISTINGS ─── -->
+<section class="listings-section">
+  <div class="section-header">
+    <h2>Featured Properties</h2>
+    <p>Hand-picked homes available right now across Ayrshire</p>
+  </div>
+  <div class="listings-grid">
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Property">
+        <div class="property-badge">For Sale</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">Offers over £285,000</div>
+        <div class="property-address">14 Maple Grove, Kilmarnock</div>
+        <div class="property-type">Detached Villa</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 4 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 2 baths</div>
+          <div class="meta-item"><span class="meta-icon">🚗</span> Garage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Property">
+        <div class="property-badge">For Sale</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">Offers over £175,000</div>
+        <div class="property-address">7 Birchwood Drive, Troon</div>
+        <div class="property-type">Semi-Detached</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 3 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 1 bath</div>
+          <div class="meta-item"><span class="meta-icon">🌿</span> Garden</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&q=80" alt="Property">
+        <div class="property-badge" style="background:#059669;">To Let</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">£950 pcm</div>
+        <div class="property-address">32 Victoria Road, Ayr</div>
+        <div class="property-type">Terraced House</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 3 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 1 bath</div>
+          <div class="meta-item"><span class="meta-icon">🐾</span> Pets OK</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Property">
+        <div class="property-badge">For Sale</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">Offers over £395,000</div>
+        <div class="property-address">Cairn Lodge, Stewarton</div>
+        <div class="property-type">Detached Bungalow</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 5 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 3 baths</div>
+          <div class="meta-item"><span class="meta-icon">🌳</span> Acreage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Property">
+        <div class="property-badge">For Sale</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">Offers over £149,000</div>
+        <div class="property-address">5B Harbour View, Saltcoats</div>
+        <div class="property-type">Flat</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 2 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 1 bath</div>
+          <div class="meta-item"><span class="meta-icon">🌊</span> Sea view</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <img class="property-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Property">
+        <div class="property-badge" style="background:#059669;">To Let</div>
+      </div>
+      <div class="property-body">
+        <div class="property-price">£1,200 pcm</div>
+        <div class="property-address">Ash House, Largs</div>
+        <div class="property-type">Detached Villa</div>
+        <div class="property-meta">
+          <div class="meta-item"><span class="meta-icon">🛏</span> 4 beds</div>
+          <div class="meta-item"><span class="meta-icon">🚿</span> 2 baths</div>
+          <div class="meta-item"><span class="meta-icon">🚗</span> Driveway</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── VALUATION BANNER ─── -->
+<section class="valuation-banner">
+  <h2>Find Out What Your Home Is Worth</h2>
+  <p>Free, no-obligation valuations from our local property experts</p>
+  <button class="valuation-btn">Book a Free Valuation</button>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section class="why-section">
+  <div class="section-header">
+    <h2>Why Choose ChatFlow AI?</h2>
+    <p>We combine local expertise with modern service</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h3>Personal Service</h3>
+      <p>You deal with the same agent from valuation to sale. No hand-offs, no call centres.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📍</div>
+      <h3>Local Knowledge</h3>
+      <p>We've sold hundreds of homes in Ayrshire and know the local market inside out.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <h3>Fast Results</h3>
+      <p>Average 42 days to sale. We price accurately and market aggressively from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">ChatFlow<span>AI</span> Estate Agents</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Sitemap</a></li>
+  </ul>
+  <div>© 2025 ChatFlow AI Ltd. All rights reserved.</div>
+</footer>
+
+<!-- ─── CHAT WIDGET ─── -->
+<div id="chat-launcher">
+  <div class="chat-notif" id="chat-notif">1</div>
+  <button id="chat-bubble" onclick="toggleChat()">💬</button>
+</div>
+
+<div id="chat-window">
+  <div class="cw-header">
+    <div class="cw-header-left">
+      <div class="cw-avatar">🏡</div>
+      <div>
+        <div class="cw-name">ChatFlow AI</div>
+        <div class="cw-status"><span class="cw-dot"></span> Online · replies instantly</div>
+      </div>
+    </div>
+    <button class="cw-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="cw-messages" id="cw-messages">
+    <div class="cw-msg bot">
+      <div class="cw-msg-av">🏡</div>
+      <div>
+        <div class="cw-bubble">Hi there! 👋 Welcome to <strong>ChatFlow AI Estate Agents</strong>. Whether you're buying, selling, or just exploring — I'm here to help. What can I do for you today?</div>
+      </div>
+    </div>
+    <div class="cw-qr-wrap">
+      <button class="cw-qr" onclick="sendQuick('I want to sell my property')">🏠 Selling</button>
+      <button class="cw-qr" onclick="sendQuick('I am looking to buy a property')">🔑 Buying</button>
+      <button class="cw-qr" onclick="sendQuick('Can I get a free valuation?')">💷 Valuation</button>
+      <button class="cw-qr" onclick="sendQuick('I want to book a viewing')">📅 Viewing</button>
+    </div>
+  </div>
+
+  <div class="cw-input-row">
+    <input class="cw-input" id="cw-input" type="text" placeholder="Type a message…" onkeydown="if(event.key==='Enter') sendMessage()">
+    <button class="cw-send" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="cw-footer-label">Powered by <span>ChatFlow AI</span></div>
+</div>
+
+<script>
+const WEBHOOK_URL = 'https://hook.eu1.make.com/8a08pei9d6vlmpb659tcki9p1eu0szlh';
+
+const SYSTEM = `You are a friendly and professional virtual assistant for ChatFlow AI Estate Agents, a local estate agency based in Ayrshire, Scotland.
+
+About the business:
+- A trusted local estate agency covering Ayrshire and surrounding areas
+- Specialises in residential sales, lettings, valuations, and property viewings
+- Known for a personal, honest approach — not a big corporate agency
+- Free no-obligation valuations available for anyone thinking of selling
+
+Services:
+- Property valuations (free, no obligation)
+- Selling residential properties
+- Helping buyers find and view properties
+- Lettings and rental properties
+- Advice on the buying and selling process in Scotland
+
+Scottish property specifics:
+- Properties in Scotland use Home Reports instead of surveys
+- Offers are typically "offers over" a fixed price
+- Solicitors handle conveyancing in Scotland
+- The process moves relatively quickly once an offer is accepted
+
+Key things to do:
+- For sellers: offer a free valuation, collect their name, address of the property, and phone number
+- For buyers: ask what they're looking for (area, budget, bedrooms), collect name and phone number
+- For viewings: collect name, which property they're interested in, and phone number
+- Do NOT ask for preferred callback time — this will be handled separately after you collect their details
+- Keep replies to 2–4 sentences
+- Never guarantee specific prices or timelines
+- Once you have collected their full details (name, phone number, and relevant property info) your ENTIRE reply must be ONLY this, nothing else before or after it:
+
+LEAD_CAPTURED
+Name: [their name]
+Phone: [their phone number]
+Type: [Buyer / Seller / Viewing / Valuation / Other]
+Details: [brief summary of what they need]
+
+- You are an AI assistant — confirm this honestly if asked`;
+
+let history = [];
+let leadSent = false;
+let pendingLead = null;
+let chatOpen = false;
+
+// Prevent chat scroll from propagating to page (JS fallback for older browsers)
+document.getElementById('cw-messages').addEventListener('wheel', function(e) {
+  const el = this;
+  const atTop = el.scrollTop === 0 && e.deltaY < 0;
+  const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1 && e.deltaY > 0;
+  if (atTop || atBottom) e.preventDefault();
+}, { passive: false });
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chat-window');
+  const notif = document.getElementById('chat-notif');
+  win.classList.toggle('open', chatOpen);
+  if (chatOpen) {
+    notif.style.display = 'none';
+    setTimeout(() => document.getElementById('cw-input').focus(), 300);
+  }
+}
+
+function sendQuick(text) {
+  document.getElementById('cw-input').value = text;
+  sendMessage();
+}
+
+function parseMarkdown(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+
+function addMessage(role, html, showMenu = false) {
+  const box = document.getElementById('cw-messages');
+
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `cw-msg ${role}`;
+  msgDiv.innerHTML = `
+    <div class="cw-msg-av">${role === 'bot' ? '🏡' : '👤'}</div>
+    <div><div class="cw-bubble">${html}</div></div>`;
+  box.appendChild(msgDiv);
+
+  if (showMenu) {
+    const qrWrap = document.createElement('div');
+    qrWrap.className = 'cw-qr-wrap';
+    qrWrap.innerHTML = `
+      <button class="cw-qr" onclick="sendQuick('I want to sell my property')">🏠 Selling</button>
+      <button class="cw-qr" onclick="sendQuick('I am looking to buy a property')">🔑 Buying</button>
+      <button class="cw-qr" onclick="sendQuick('Can I get a free valuation?')">💷 Valuation</button>
+      <button class="cw-qr" onclick="sendQuick('I want to book a viewing')">📅 Viewing</button>`;
+    box.appendChild(qrWrap);
+  }
+
+  box.scrollTop = box.scrollHeight;
+}
+
+function showTyping() {
+  const box = document.getElementById('cw-messages');
+  const div = document.createElement('div');
+  div.className = 'cw-msg bot typing-indicator';
+  div.id = 'cw-typing';
+  div.innerHTML = `
+    <div class="cw-msg-av">🏡</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('cw-typing');
+  if (el) el.remove();
+}
+
+function parseLead(text) {
+  if (!text.includes('LEAD_CAPTURED')) return null;
+  const block = text.substring(text.indexOf('LEAD_CAPTURED'));
+  const get = (key) => {
+    const match = block.match(new RegExp(key + ':\\s*(.+)'));
+    return match ? match[1].trim() : 'Not provided';
+  };
+  return {
+    name: get('Name'),
+    phone: get('Phone'),
+    type: get('Type'),
+    details: get('Details')
+  };
+}
+
+function showTimePicker(lead) {
+  pendingLead = lead;
+  const box = document.getElementById('cw-messages');
+
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'cw-msg bot';
+  msgDiv.innerHTML = `
+    <div class="cw-msg-av">🏡</div>
+    <div><div class="cw-bubble">Almost done! When's the best time to call you? 📞</div></div>`;
+  box.appendChild(msgDiv);
+  box.scrollTop = box.scrollHeight;
+
+  // Temporarily swap the main input into callback mode
+  const input = document.getElementById('cw-input');
+  const sendBtn = document.querySelector('.cw-send');
+  input.placeholder = 'e.g. anytime, weekday mornings, after 3pm…';
+  input.focus();
+
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter' && input.value.trim()) confirmCallback();
+  };
+  sendBtn.onclick = function() {
+    if (input.value.trim()) confirmCallback();
+  };
+}
+
+async function confirmCallback() {
+  const input = document.getElementById('cw-input');
+  const time = input.value.trim();
+  if (!time) return;
+
+  // Restore normal input behaviour
+  input.placeholder = 'Type a message…';
+  input.value = '';
+  input.onkeydown = function(e) { if (e.key === 'Enter') sendMessage(); };
+  document.querySelector('.cw-send').onclick = sendMessage;
+
+  addMessage('user', time);
+  pendingLead.callback = time;
+  pendingLead.timestamp = new Date().toLocaleString('en-GB');
+  await sendToMake(pendingLead);
+  pendingLead = null;
+  addMessage('bot', "Perfect! I've passed your details to the team and one of our agents will be in touch shortly. 🏡");
+}
+
+async function sendToMake(lead) {
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ business: 'ChatFlow AI Demo', ...lead })
+    });
+  } catch (e) {
+    console.error('Webhook failed:', e);
+  }
+}
+
+async function sendMessage() {
+  const input = document.getElementById('cw-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage('user', text);
+  history.push({ role: 'user', content: text });
+  await getBotReply();
+}
+
+async function getBotReply() {
+  showTyping();
+  try {
+    const res = await fetch('https://chat-bot-server-production-7f7f.up.railway.app/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYSTEM, messages: history })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || "Sorry, I'm having a connection issue. Please try again shortly.";
+    removeTyping();
+    history.push({ role: 'assistant', content: reply });
+
+    if (!leadSent) {
+      const lead = parseLead(reply);
+      if (lead) {
+        leadSent = true;
+        showTimePicker(lead);
+        return;
+      }
+    }
+
+    const displayReply = reply.includes('LEAD_CAPTURED')
+      ? reply.substring(0, reply.indexOf('LEAD_CAPTURED')).trim()
+      : reply;
+
+    const lastUserMsg = history.length >= 2 ? history[history.length - 2]?.content?.toLowerCase() : '';
+    const showMenu = lastUserMsg.includes('area') || lastUserMsg.includes('cover') || lastUserMsg.includes('location');
+    addMessage('bot', parseMarkdown(displayReply).replace(/\n/g, '<br>'), showMenu);
+  } catch (e) {
+    removeTyping();
+    addMessage('bot', "Sorry, something went wrong. Please try again in a moment.");
+  }
+}
+</script>
+</body>
+</html>
