@@ -678,7 +678,7 @@ footer {
   .listings-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 16px; text-align: center; }
-  #chat-window { top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border-radius: 0; }
+  #chat-window { top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100dvh; border-radius: 0; }
   #chat-launcher { bottom: 20px; right: 20px; }
 }
 </style>
@@ -984,7 +984,6 @@ function toggleChat() {
   // Hide bubble on mobile when chat is open so it doesn't cover the send button
   if (window.innerWidth <= 768) {
     launcher.style.visibility = chatOpen ? 'hidden' : 'visible';
-    if (!chatOpen) { win.style.height = ''; win.style.top = ''; }
   }
   if (chatOpen) {
     notif.style.display = 'none';
@@ -992,16 +991,6 @@ function toggleChat() {
   }
 }
 
-// Fix iOS keyboard pushing layout around
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    const win = document.getElementById('chat-window');
-    if (chatOpen && window.innerWidth <= 768) {
-      win.style.height = window.visualViewport.height + 'px';
-      win.style.top = window.visualViewport.offsetTop + 'px';
-    }
-  });
-}
 
 function sendQuick(text) {
   document.getElementById('cw-input').value = text;
