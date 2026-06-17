@@ -979,11 +979,28 @@ function toggleChat() {
   chatOpen = !chatOpen;
   const win = document.getElementById('chat-window');
   const notif = document.getElementById('chat-notif');
+  const launcher = document.getElementById('chat-launcher');
   win.classList.toggle('open', chatOpen);
+  // Hide bubble on mobile when chat is open so it doesn't cover the send button
+  if (window.innerWidth <= 768) {
+    launcher.style.visibility = chatOpen ? 'hidden' : 'visible';
+    if (!chatOpen) { win.style.height = ''; win.style.top = ''; }
+  }
   if (chatOpen) {
     notif.style.display = 'none';
     setTimeout(() => document.getElementById('cw-input').focus(), 300);
   }
+}
+
+// Fix iOS keyboard pushing layout around
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    const win = document.getElementById('chat-window');
+    if (chatOpen && window.innerWidth <= 768) {
+      win.style.height = window.visualViewport.height + 'px';
+      win.style.top = window.visualViewport.offsetTop + 'px';
+    }
+  });
 }
 
 function sendQuick(text) {
