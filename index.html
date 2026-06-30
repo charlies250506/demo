@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ChatFlow AI – Estate Agents</title>
+<title>CJSChatFlow – Estate Agents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -845,7 +845,7 @@ footer {
 <!-- ─── WHY US ─── -->
 <section class="why-section">
   <div class="section-header">
-    <h2>Why Choose ChatFlow AI?</h2>
+    <h2>Why Choose CJSChatFlow?</h2>
     <p>We combine local expertise with modern service</p>
   </div>
   <div class="why-grid">
@@ -876,7 +876,7 @@ footer {
     <li><a href="#">Contact</a></li>
     <li><a href="#">Sitemap</a></li>
   </ul>
-  <div>© 2025 ChatFlow AI Ltd. All rights reserved.</div>
+  <div>© 2025 CJSChatFlow Ltd. All rights reserved.</div>
 </footer>
 
 <!-- ─── CHAT WIDGET ─── -->
@@ -890,7 +890,7 @@ footer {
     <div class="cw-header-left">
       <div class="cw-avatar">🏡</div>
       <div>
-        <div class="cw-name">ChatFlow AI</div>
+        <div class="cw-name">CJSChatFlow</div>
         <div class="cw-status"><span class="cw-dot"></span> Online · replies instantly</div>
       </div>
     </div>
@@ -901,7 +901,7 @@ footer {
     <div class="cw-msg bot">
       <div class="cw-msg-av">🏡</div>
       <div>
-        <div class="cw-bubble">Hi there! 👋 Welcome to <strong>ChatFlow AI Estate Agents</strong>. Whether you're buying, selling, or just exploring — I'm here to help. What can I do for you today?</div>
+        <div class="cw-bubble">Hi there! 👋 Welcome to <strong>CJSChatFlow Estate Agents</strong>. Whether you're buying, selling, or just exploring — I'm here to help. What can I do for you today?</div>
       </div>
     </div>
     <div class="cw-qr-wrap">
@@ -918,13 +918,13 @@ footer {
       <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
     </button>
   </div>
-  <div class="cw-footer-label">Powered by <span>ChatFlow AI</span></div>
+  <div class="cw-footer-label">Powered by <span>CJSChatFlow</span></div>
 </div>
 
 <script>
 const WEBHOOK_URL = 'https://hook.eu1.make.com/8a08pei9d6vlmpb659tcki9p1eu0szlh';
 
-const SYSTEM = `You are a friendly and professional virtual assistant for ChatFlow AI Estate Agents, an estate agency based in Kilmarnock, Ayrshire, Scotland.
+const SYSTEM = `You are a friendly and professional virtual assistant for CJSChatFlow Estate Agents, an estate agency based in Kilmarnock, Ayrshire, Scotland.
 
 BUSINESS BASICS
 
@@ -934,7 +934,7 @@ Opening hours: Monday to Friday 9am–5:30pm, Saturday 9am–1pm, closed Sunday.
 
 Phone: 01563 521 000
 
-Email: info@chatflowai-estates.co.uk
+Email: info@cjschatflow.co.uk
 
 Office address: 14 King Street, Kilmarnock, KA1 1AB
 
@@ -958,7 +958,7 @@ CREDIBILITY & TRUST
 
 Professional memberships: Members of NAEA Propertymark and The Property Ombudsman, so clients are fully protected if they ever have a complaint.
 
-Google reviews: Rated 4.8 out of 5 on Google with 143 reviews — users can search "ChatFlow AI Estate Agents Kilmarnock" to read them.
+Google reviews: Rated 4.8 out of 5 on Google with 143 reviews — users can search "CJSChatFlow Estate Agents Kilmarnock" to read them.
 
 Average time to sell: 38 days on average — well below the Scottish national average.
 
@@ -1254,7 +1254,7 @@ async function sendToMake(lead) {
     await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ business: 'ChatFlow AI Demo', ...lead })
+      body: JSON.stringify({ business: 'CJSChatFlow Demo', ...lead })
     });
   } catch (e) {
     console.error('Webhook failed:', e);
